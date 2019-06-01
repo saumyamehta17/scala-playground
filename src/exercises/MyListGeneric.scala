@@ -119,11 +119,15 @@ trait MyTransformer[-A, B] {
 object Objects extends App {
   val list: MyListGeneric[Int] = new NonEmptyList(1, new NonEmptyList(2, new NonEmptyList(3, new Empty)))
   println(list.toString)
-  println(list.map(new MyTransformer[Int, Int] {
+  println("Transformer " + list.map(new MyTransformer[Int, Int] {
     override def transform(elem: Int): Int = elem * 2
   }))
 
-  println(list.filter(new MyPredicate[Int] {
+  println("Transformer with Function " + list.map(new MyTransformer[Int, Int] {
+    override def transform(elem: Int): Int = elem * 2
+  }))
+
+  println("Predicate " + list.filter(new MyPredicate[Int] {
     override def test(elem: Int): Boolean = elem % 2 == 0
   }).toString)
 
