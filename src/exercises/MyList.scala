@@ -13,7 +13,7 @@ abstract class MyList {
 */
 
  def head: Int
-// def add(n: Int): MyList
+ def add(n: Int): MyList
  def isEmpty: Boolean
  def tail: MyList
  def printElements: String = ""
@@ -24,7 +24,7 @@ object Empty extends MyList{
   def head: Int = throw new NoSuchElementException
   def tail: MyList = throw new NoSuchElementException
   def isEmpty: Boolean = true
-//  def add(n: Int): MyList = Empty
+  def add(n: Int): MyList = Empty
 }
 
 class NonEmptyList(h: Int, t: MyList) extends MyList{
@@ -44,4 +44,6 @@ object Objects extends App {
   println(list.tail.head)
   println(list.add(4).head)
   println(list.toString)
+
+
 }

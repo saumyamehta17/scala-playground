@@ -8,6 +8,9 @@ object Generics extends App{
   // MyList is generic class
   class MyList[A] {
   //    use type A
+  // new MyList[Int] => now int will replace A
+  // new MyList[String] => now string will replace A
+  // we can also make generic trait
   }
   //  multiple type parameter(key is one generic type, and value is another)
   class MyMap[key, value]
@@ -28,9 +31,11 @@ object Generics extends App{
   class Cat extends Animal
   class Dog extends Animal
   // Question - if cat extends animal, does list-of_cats also extends list_of_animals
-  // Answers
+  // Possible Answers
+
   // 1. yes, list_of_cats extends list_of_animals called COVARIANCE
    class ConvarianceList[+A]
+
   // 2. List of cat and list of dog are different = INVARIANCE
   class InvariantList[A]
   val invariantAnimalList: InvariantList[Animal] = new InvariantList[Animal]
@@ -38,7 +43,8 @@ object Generics extends App{
   // 3. CONTRAVARIANCE
   class ContravarianceList[-A]
 
-  // Bounded Types - allow you to use your generic classes only certain class
+  // Bounded Types - allow you to use your generic classes only for certain types that are either they
+  // subclass of different type or super class of different type
   class Cage[A <: Animal](animal: Animal) // class cage only have type paramters of Animal
   // <: or lower bounded types,  mean it allow types which are subclass of animal
   val cage = new Cage(new Dog)
